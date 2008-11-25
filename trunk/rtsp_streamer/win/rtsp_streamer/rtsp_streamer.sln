@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rtsp_streamer", "rtsp_streamer\rtsp_streamer.vcproj", "{43EA992D-51EE-4C26-BEA6-6BBAEABF6A92}"
+	ProjectSection(ProjectDependencies) = postProject
+		{66247888-8A0F-4D8D-9AE2-61510FEC964B} = {66247888-8A0F-4D8D-9AE2-61510FEC964B}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "common", "..\..\..\common\win\common\common.vcproj", "{66247888-8A0F-4D8D-9AE2-61510FEC964B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43EA992D-51EE-4C26-BEA6-6BBAEABF6A92}.Debug|Win32.ActiveCfg = Debug|Win32
+		{43EA992D-51EE-4C26-BEA6-6BBAEABF6A92}.Debug|Win32.Build.0 = Debug|Win32
+		{43EA992D-51EE-4C26-BEA6-6BBAEABF6A92}.Release|Win32.ActiveCfg = Release|Win32
+		{43EA992D-51EE-4C26-BEA6-6BBAEABF6A92}.Release|Win32.Build.0 = Release|Win32
+		{66247888-8A0F-4D8D-9AE2-61510FEC964B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{66247888-8A0F-4D8D-9AE2-61510FEC964B}.Debug|Win32.Build.0 = Debug|Win32
+		{66247888-8A0F-4D8D-9AE2-61510FEC964B}.Release|Win32.ActiveCfg = Release|Win32
+		{66247888-8A0F-4D8D-9AE2-61510FEC964B}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
