@@ -15,12 +15,12 @@
 #endif
 
 #include "common/base.hpp"
-#include "common/log.hpp"
+#include "common/logger.hpp"
 #include "common/exception.hpp"
 
 namespace stream_server {
 
-namespace log = common::log;
+namespace logger = common::logger;
 
 }
 

@@ -8,20 +8,20 @@
 namespace stream_server {
 
 service::service()
-	: common::service(boost::assign::list_of(SIGINT))
+	: common::service(((common::signal_builder()),(SIGINT)))
 	, name_("[stream_server]")
 {}
 
 void service::start()
 {
-	log::info() << name() << " Init the server";
+	logger::info() << name() << " Init the server";
 	
 }
 
 int service::run(int argc, char ** argv)
 {
 	streamer_.reset(new streamer(argv[1]));
-	log::info() << name() << " Server started";
+	logger::info() << name() << " Server started";
 
 	std::vector<char> read_buf(10000, 0);
 	while (running()) {
@@ -32,15 +32,15 @@ int service::run(int argc, char ** argv)
 			if (line == "EOF") break;
 			buf += line + "\r\n";
 		}
-		log::debug() << "Sending:\n" << buf;
+		logger::debug() << "Sending:\n" << buf;
 		streamer_->send(buf);
 
 		int len = streamer_->read(read_buf);
 		std::string tmp(&buf[0], len);
-		log::debug() << "Recieved:\n" << tmp;
+		logger::debug() << "Recieved:\n" << tmp;
 		boost::this_thread::yield();
 	}
-	log::info() << name() << " Server stopped";
+	logger::info() << name() << " Server stopped";
 	return 0;
 }
 
@@ -53,7 +53,7 @@ void service::on_terminate_signal()
 
 int main(int argc, char ** argv)
 {
-	common::log::init_logger();
+	common::logger::init_logger();
 	stream_server::service s;
 	return s(argc, argv);
 }
