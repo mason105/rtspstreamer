@@ -35,13 +35,13 @@ streamer::streamer(std::string const & ip, unsigned short port)
 
 streamer::~streamer()
 {
-	log::debug() << name() << " Closing the socket";
+	logger::debug() << name() << " Closing the socket";
 	socket_.close();
 }
 
 void streamer::connect()
 {
-	log::info() << name() << " Connecting to " << endpoint_;
+	logger::info() << name() << " Connecting to " << endpoint_;
 	socket_.connect(endpoint_);
 }
 
@@ -63,7 +63,7 @@ void streamer::send(char const * data, unsigned int size)
 void streamer::send(void const * data, unsigned int size)
 {
 	socket_.send(boost::asio::buffer(data, size));
-	log::debug() << name() << " Sent " << size << " bytes";
+	logger::debug() << name() << " Sent " << size << " bytes";
 }
 
 unsigned int streamer::read(std::vector<char> & data)

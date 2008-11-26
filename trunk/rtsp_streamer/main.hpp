@@ -10,8 +10,6 @@
 
 namespace stream_server {
 
-namespace log = common::log;
-
 class streamer;
 
 class service : public common::service {
