@@ -1,4 +1,4 @@
-#include "log.hpp"
+#include "logger.hpp"
 #include "service.hpp"
 #include <algorithm>
 #include <boost/bind.hpp>
@@ -27,7 +27,7 @@ struct instance {
 	{}
 
 	void handle(int sig) {
-		log::debug() << "[signal_instance] Handling signal " << sig;
+		logger::debug() << "[signal_instance] Handling signal " << sig;
 		if (term_signals_.find(sig) != term_signals_.end()) {
 			callback_.on_terminate_signal();
 		} else if (reload_signals_.find(sig) != reload_signals_.end()) {
@@ -106,34 +106,36 @@ service::service(signal_list_t const & term_signals
 		);
 }
 
-void service::operator()(int argc, char ** argv) 
+int service::operator()(int argc, char ** argv) 
 {	
+    int ret = -1;
 	try {
 		start();
-		run(argc, argv);
+		ret = run(argc, argv);
 		stop();
 	} catch (common::exception & e) {
-		log::error() << name() << " common::exception: " << e.what();
+		logger::error() << name() << " common::exception: " << e.what();
 	} catch (std::exception & e) {
-		log::error() << name() << " std::exception: " << e.what();
+		logger::error() << name() << " std::exception: " << e.what();
 	}
+    return ret;
 }
 
 void service::on_terminate_signal()
 {
-	log::debug() << name() << " Termination signal received";
+	logger::debug() << name() << " Termination signal received";
 	running_ = false;
 }
 
 void service::on_offload_signal()
 {
-	log::debug() << name() << " Offloading signal received";
+	logger::debug() << name() << " Offloading signal received";
 	offloaded_ = true;
 }
 
 void service::on_reload_signal()
 {
-	log::debug() << name() << " Reloading signal received";
+	logger::debug() << name() << " Reloading signal received";
 }
 
 }

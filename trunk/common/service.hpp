@@ -12,8 +12,23 @@ namespace common {
 
 typedef std::set<int> signal_list_t;
 
+class signal_builder {
+public:
+    signal_builder() {}
+    signal_builder & operator ,(int sig) {
+        list.insert(sig);
+        return *this;
+    }
+    operator signal_list_t & () {
+        return list;
+    }
+private:
+    signal_list_t list;
+};
+
 struct signal_callback {
-	virtual void on_terminate_signal() = 0;
+    virtual ~signal_callback() {}
+    virtual void on_terminate_signal() = 0;
 	virtual void on_offload_signal() = 0;
 	virtual void on_reload_signal() = 0;
 };
@@ -42,7 +57,7 @@ public:
 	virtual int run(int argc, char ** argv) = 0;
 	virtual void stop() {}
 
-	void operator()(int argc, char ** argv);
+	int operator()(int argc, char ** argv);
 
 public:	// can be overloaded
 	virtual void on_terminate_signal();
