@@ -1,7 +1,7 @@
 #include "streamer.hpp"
 #include <boost/algorithm/string.hpp>
 
-namespace stream_server {
+namespace rtsp_streamer {
 
 streamer::streamer(std::string const & address)
 	: socket_(io_service_)

@@ -51,7 +51,8 @@ BUILDDIRS = \
 
 MAIN_SRC = \
     $(RTSP)/main.cpp \
-	$(RTSP)/streamer.cpp 
+	$(RTSP)/streamer.cpp \
+	$(RTSP)/proto_tester.cpp
 
 COMMON_SRC = \
 	$(COMMON)/logger.cpp \
@@ -119,13 +120,13 @@ clean:
 %.d: %.cpp
 	@mkdir -p $(BUILDDIRS)
 	@echo "--- header deps:" $<
-	set -e; $(CPP) -MM $(CPPFLAGS) $(DEFINES) $(INCLUDES) $<\
+	@set -e; $(CPP) -MM $(CPPFLAGS) $(DEFINES) $(INCLUDES) $<\
 		| sed 's?$(notdir $*)\.o[ :]*?$*.o $@ : ?g' > $@;\
 		[ -s $@ ] || rm -f $@
 
 .cpp.o:
 	@echo "--- compile:" $<
-	$(CPP) -c $(CPPFLAGS) $(DEFINES) $(INCLUDES) $< -o $@
+	@$(CPP) -c $(CPPFLAGS) $(DEFINES) $(INCLUDES) $< -o $@
 
 ################################################################################
 

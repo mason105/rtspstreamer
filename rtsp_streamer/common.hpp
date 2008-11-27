@@ -1,5 +1,5 @@
-#ifndef __stream_server_common_hpp__
-#define __stream_server_common_hpp__
+#ifndef __rtsp_streamer_common_hpp__
+#define __rtsp_streamer_common_hpp__
 
 #ifdef WIN32
 #pragma once
@@ -18,10 +18,17 @@
 #include "common/logger.hpp"
 #include "common/exception.hpp"
 
-namespace stream_server {
+#include <fstream>
+
+#include <boost/bind.hpp>
+#include <boost/thread.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/algorithm/string.hpp>
+
+namespace rtsp_streamer {
 
 namespace logger = common::logger;
 
 }
 
-#endif // __stream_server_common_hpp__
+#endif // __rtsp_streamer_common_hpp__
