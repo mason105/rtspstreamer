@@ -1,21 +1,3 @@
-TSP 1.1
-header: ada d
-asads as
- asd
+RTSP 1.1
 
- dsa;kas;dkas
- ]d as
- ]d as
- ] das
-  
- asd a
- sas
- ]p 32-4o 2-=30-4230- 32-o r32d
- ]
- d 
- 2d
- 2;3
- ] p
- ]d2;
- ]d;222:
 EOF

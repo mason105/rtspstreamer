@@ -36,7 +36,7 @@ void proto_tester::run()
 
     logger::debug() << name() << " Thread started";
 
-    std::vector<char> recv_buf;
+    std::vector<char> recv_buf(10000);
     while (running_) {
         try {
             std::string buf = get_send_buf(f); 
@@ -49,7 +49,7 @@ void proto_tester::run()
             if (!recv_buf.empty()) {
                 logger::debug() << std::string(&recv_buf[0], recv_buf.size());
             }
-            sleep(1);
+			boost::this_thread::sleep(boost::posix_time::milliseconds(1000));
         } catch (std::exception & e) {
             logger::error() << name() << " Exception: " << e.what();
             running_ = false;
