@@ -1,5 +1,5 @@
-#ifndef __stream_server_streamer_hpp__
-#define __stream_server_streamer_hpp__
+#ifndef __rtsp_streamer_streamer_hpp__
+#define __rtsp_streamer_streamer_hpp__
 
 #ifdef WIN32
 #pragma once
@@ -12,7 +12,7 @@
 #include <boost/asio.hpp>
 #include <boost/lexical_cast.hpp>
 
-namespace stream_server {
+namespace rtsp_streamer {
 
 struct address_syntax_failure : common::exception {
 	address_syntax_failure(std::string const & address)

@@ -2,7 +2,7 @@ FILES = rtsp_streamer
 
 ################################################################################
 
-#MAKE_OPT = --no-print-directory -j `grep -c processor /proc/cpuinfo`
+MAKE_OPT = --no-print-directory -j `grep -c processor /proc/cpuinfo`
 
 all: compile $(FILES)
 

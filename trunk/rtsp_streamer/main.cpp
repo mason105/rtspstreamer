@@ -1,15 +1,15 @@
 #include "main.hpp"
 #include "streamer.hpp"
+#include "proto_tester.hpp"
 
 #include <iostream>
-#include <boost/thread/thread.hpp>
 #include <boost/assign/list_of.hpp>
 
-namespace stream_server {
+namespace rtsp_streamer {
 
 service::service()
 	: common::service(((common::signal_builder()),(SIGINT)))
-	, name_("[stream_server]")
+	, name_("[rtsp_streamer]")
 {}
 
 void service::start()
@@ -23,21 +23,9 @@ int service::run(int argc, char ** argv)
 	streamer_.reset(new streamer(argv[1]));
 	logger::info() << name() << " Server started";
 
-	std::vector<char> read_buf(10000, 0);
-	while (running()) {
-		std::cout << "Text to send: ";
-		std::string buf, line;
-		while (true) {
-			std::cin >> line;
-			if (line == "EOF") break;
-			buf += line + "\r\n";
-		}
-		logger::debug() << "Sending:\n" << buf;
-		streamer_->send(buf);
-
-		int len = streamer_->read(read_buf);
-		std::string tmp(&buf[0], len);
-		logger::debug() << "Recieved:\n" << tmp;
+    proto_tester pt(argv[2], *streamer_);
+    pt.start();
+	while (running() && pt.running()) {
 		boost::this_thread::yield();
 	}
 	logger::info() << name() << " Server stopped";
@@ -49,11 +37,11 @@ void service::on_terminate_signal()
 	common::service::on_terminate_signal();
 }
 
-} // namespace stream_server
+} // namespace rtsp_streamer
 
 int main(int argc, char ** argv)
 {
 	common::logger::init_logger();
-	stream_server::service s;
+	rtsp_streamer::service s;
 	return s(argc, argv);
 }

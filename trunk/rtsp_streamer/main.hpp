@@ -1,5 +1,5 @@
-#ifndef __stream_server_main_hpp__
-#define __stream_server_main_hpp__
+#ifndef __rtsp_streamer_main_hpp__
+#define __rtsp_streamer_main_hpp__
 
 #ifdef WIN32
 #pragma once
@@ -8,7 +8,7 @@
 #include "common.hpp"
 #include "common/service.hpp"
 
-namespace stream_server {
+namespace rtsp_streamer {
 
 class streamer;
 
@@ -31,4 +31,4 @@ private:
 
 }
 
-#endif // __stream_server_main_hpp__
+#endif // __rtsp_streamer_main_hpp__
