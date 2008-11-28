@@ -44,12 +44,12 @@ void proto_tester::run()
                 streamer_.send(buf);
                 logger::debug() << "Data:\n" << buf;
             }
+			boost::this_thread::sleep(boost::posix_time::milliseconds(1000));
             streamer_.read(recv_buf);
             logger::debug() << name() << " Read " << recv_buf.size() << " bytes";
             if (!recv_buf.empty()) {
                 logger::debug() << std::string(&recv_buf[0], recv_buf.size());
             }
-			boost::this_thread::sleep(boost::posix_time::milliseconds(1000));
         } catch (std::exception & e) {
             logger::error() << name() << " Exception: " << e.what();
             running_ = false;
