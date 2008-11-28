@@ -1,3 +1,9 @@
-RTSP 1.1
+sdff sf sd
+
+EOF
+
+OPTIONS rtsp://vigen:vigen@192.168.2.106:7070 RTSP 1.0
+CSeq: 1
+User-Agent: RTSP Streamer
 
 EOF
