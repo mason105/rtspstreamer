@@ -52,7 +52,10 @@ BUILDDIRS = \
 MAIN_SRC = \
     $(RTSP)/main.cpp \
 	$(RTSP)/streamer.cpp \
-	$(RTSP)/proto_tester.cpp
+	$(RTSP)/proto_tester.cpp \
+	$(RTSP)/rtsp/rtsp.cpp \
+	$(RTSP)/rtsp/session.cpp \
+	$(RTSP)/rtsp/commands.cpp
 
 COMMON_SRC = \
 	$(COMMON)/logger.cpp \
