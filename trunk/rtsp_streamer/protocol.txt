@@ -1,9 +1,27 @@
-sdff sf sd
-
-EOF
-
-OPTIONS rtsp://vigen:vigen@192.168.2.106:7070 RTSP 1.0
+OPTIONS rtsp://vigen:vigen@87.119.184.199:7070 RTSP/1.0
 CSeq: 1
-User-Agent: RTSP Streamer
+User-Agent: ACTi Media Player 1.0 
 
 EOF
+DESCRIBE rtsp://vigen:vigen@87.119.184.199:7070 RTSP/1.0
+CSeq: 2
+Accept: application/sdp
+User-Agent: ACTi Media Player 1.0 
+
+EOF
+SETUP rtsp://vigen:vigen@87.119.184.199:7070/track1 RTSP/1.0
+CSeq: 4
+Transport: RTP/AVP;unicast;client_port=4652-4653
+Authorization: Digest username="vigen", realm="", nonce="", uri="rtsp://vigen:vigen@87.119.184.199:7070", response="92d84563ef9444b6ec2125ac38851ffe"
+User-Agent: ACTi Media Player 1.0
+
+EOF
+PLAY rtsp://vigen:vigen@87.119.184.199:7070 RTSP/1.0
+CSeq: 5
+Session: 28
+Range: ntp=0.0000-
+Authorization: Digest username="vigen", realm="", nonce="", uri="rtsp://vigen:vigen@87.119.184.199:7070", response="d45c20c12e09ec1c0ae55e7c94c91464"
+User-Agent: ACTi Media Player 1.0 
+
+EOF
+

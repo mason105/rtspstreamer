@@ -44,7 +44,7 @@ void proto_tester::run()
                 streamer_.send(buf);
                 logger::debug() << "Data:\n" << buf;
             }
-			boost::this_thread::sleep(boost::posix_time::milliseconds(1000));
+		//	boost::this_thread::sleep(boost::posix_time::milliseconds(1000));
             streamer_.read(recv_buf);
             logger::debug() << name() << " Read " << recv_buf.size() << " bytes";
             if (!recv_buf.empty()) {

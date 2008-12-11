@@ -24,6 +24,7 @@
 #include <boost/thread.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/algorithm/string.hpp>
+#include <boost/spirit.hpp>
 
 namespace rtsp_streamer {
 
