@@ -10,7 +10,7 @@
 
 namespace rtsp_streamer {
 
-class streamer;
+//class streamer;
 
 class service : public common::service {
 public:
@@ -26,7 +26,7 @@ public:
 
 private:
 	std::string name_;
-	boost::shared_ptr<streamer> streamer_;
+//	boost::shared_ptr<streamer> streamer_;
 };
 
 }
