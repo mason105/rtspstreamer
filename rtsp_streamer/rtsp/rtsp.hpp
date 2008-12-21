@@ -11,14 +11,6 @@ namespace logger = common::logger;
 
 typedef unsigned int SessionId;
 
-struct session_handshake_done : public common::exception {
-    session_handshake_done(SessionId sid)
-        : common::exception("Session id = "
-                + boost::lexical_cast<std::string>(sid)
-                + " handshake is done")
-    {}
-};
-
 class config : public common::singleton<config> {
 protected:
     friend class common::singleton<config>;
@@ -29,14 +21,6 @@ public:
     std::string user_agent;
 };
 
-class command : public common::base {
-public:
-    typedef boost::shared_ptr<command> pointer;
-
-    virtual ~command() {}
-    virtual std::string operator()() = 0;
-};
-
 class session
     : public common::base 
     , private boost::noncopyable {
@@ -45,16 +29,8 @@ public:
 
     /** Get session id */
     virtual SessionId const id() const = 0;
-    /** 
-     * Get the next command to send
-     * \throw session_handshake_done when session handshake is over
-     * \return empty pointer if there's nothing to send
-     */
-    virtual command::pointer next() = 0;
-    /**
-     * Called when there's a reply to the command
-     */
-    virtual void on_reply(std::string const & reply) = 0;
+	/** Get stream packet */
+	virtual packet::pointer get_packet() = 0;
 };
 
 class factory : public common::base {

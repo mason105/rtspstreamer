@@ -4,8 +4,18 @@ ROOT = ../..
 COMMON = $(ROOT)/common
 RTSP = $(ROOT)/rtsp_streamer
 
-BOOST_INC = /usr/local/include/boost-1_36
-BOOST_LIB = /usr/local/lib/boost-1_36
+BOOST_VER=1_37
+
+UNAME=$(shell uname)
+ifeq ($(UNAME), Darwin)
+    BOOST_FOOTER=xgcc40-mt-$(BOOST_VER)
+else
+    BOOST_FOOTER=-mt-$(BOOST_VER)
+endif
+	
+BOOST_COMPLIRE=xgcc40
+BOOST_INC = /usr/include/boost-$(BOOST_VER)
+BOOST_LIB = /usr/lib
 
 ifeq "$(RELEASE)" "yes"
 OPTIMIZE_FLAGS = -O2
@@ -51,11 +61,6 @@ BUILDDIRS = \
 
 MAIN_SRC = \
     $(RTSP)/main.cpp \
-	$(RTSP)/streamer.cpp \
-	$(RTSP)/proto_tester.cpp \
-	$(RTSP)/rtsp/rtsp.cpp \
-	$(RTSP)/rtsp/session.cpp \
-	$(RTSP)/rtsp/commands.cpp
 
 COMMON_SRC = \
 	$(COMMON)/logger.cpp \
@@ -69,11 +74,11 @@ DEPS += $(PROG_DEPS)
 PROG_OBJS = $(PROG_SRC:%.cpp=%.o)
 OBJS += $(PROG_OBJS)
 
-PROG_LDLIBS += -lboost_date_time-gcc41-mt-1_36
-PROG_LDLIBS += -lboost_filesystem-gcc41-mt-1_36
-PROG_LDLIBS += -lboost_program_options-gcc41-mt-1_36
-PROG_LDLIBS += -lboost_thread-gcc41-mt-1_36
-PROG_LDLIBS += -lboost_regex-gcc41-mt-1_36
+PROG_LDLIBS += -lboost_date_time-$(BOOST_FOOTER)
+PROG_LDLIBS += -lboost_filesystem-$(BOOST_FOOTER)
+PROG_LDLIBS += -lboost_program_options-$(BOOST_FOOTER)
+PROG_LDLIBS += -lboost_thread-$(BOOST_FOOTER)
+PROG_LDLIBS += -lboost_regex-$(BOOST_FOOTER)
 
 $(PROG): LDLIBS += $(PROG_LDLIBS)
 $(PROG): $(PROG_OBJS)

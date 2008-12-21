@@ -1,6 +1,4 @@
 #include "main.hpp"
-#include "streamer.hpp"
-#include "proto_tester.hpp"
 
 #include <iostream>
 #include <boost/assign/list_of.hpp>
@@ -20,12 +18,12 @@ void service::start()
 
 int service::run(int argc, char ** argv)
 {
-	streamer_.reset(new streamer(argv[1]));
+//	streamer_.reset(new streamer(argv[1]));
 	logger::info() << name() << " Server started";
 
-    proto_tester pt(argv[2], *streamer_);
-    pt.start();
-	while (running() && pt.running()) {
+//    proto_tester pt(argv[2], *streamer_);
+//    pt.start();
+	while (running()) {
 		boost::this_thread::yield();
 	}
 	logger::info() << name() << " Server stopped";
