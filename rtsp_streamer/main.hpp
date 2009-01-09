@@ -14,19 +14,19 @@ namespace rtsp_streamer {
 
 class service : public common::service {
 public:
-	service();
-	
-	virtual void start();
-	virtual int run(int argc, char ** argv);
-	virtual void on_terminate_signal();
+    service();
+    
+    virtual void start();
+    virtual int run(int argc, char ** argv);
+    virtual void on_terminate_signal();
 
-	virtual std::string const & name() const {
-		return name_;
-	}
+    virtual std::string const & name() const {
+        return name_;
+    }
 
 private:
-	std::string name_;
-//	boost::shared_ptr<streamer> streamer_;
+    std::string name_;
+//    boost::shared_ptr<streamer> streamer_;
 };
 
 }

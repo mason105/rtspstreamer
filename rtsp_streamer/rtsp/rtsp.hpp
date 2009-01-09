@@ -29,8 +29,8 @@ public:
 
     /** Get session id */
     virtual SessionId const id() const = 0;
-	/** Get stream packet */
-	virtual packet::pointer get_packet() = 0;
+    /** Get stream packet */
+    virtual packet::pointer get_packet() = 0;
 };
 
 class factory : public common::base {
