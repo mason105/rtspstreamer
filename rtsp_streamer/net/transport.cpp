@@ -1,11 +1,11 @@
-/*
- *  transport.cpp
- *  rtsp
- *
- *  Created by vigen on 1/9/09.
- *  Copyright 2009 Skype. All rights reserved.
- *
- */
+#include "transport.hpp"
+#include "asio/transport.hpp"
 
-#include "transport.h"
+using namespace net;
 
+transport & transport::instance()
+{
+    // TODO: Add different underlying socket I/O here (asio, socket impl, etc.)
+    static transport_asio trans;
+    return trans;
+}
