@@ -102,7 +102,7 @@ public:
     {
         str << f.str.str();
     }
-	virtual ~formatter() {
+    virtual ~formatter() {
         try {
             str << std::endl;
             l.print(static_cast<std::ostringstream &>(str));
@@ -110,17 +110,17 @@ public:
         }
     }
 
-	template <typename T> 
-	std::ostream & operator<< (const T &t) {
-		static_cast<std::ostream &>(str) << t;
+    template <typename T> 
+    std::ostream & operator<< (const T &t) {
+        static_cast<std::ostream &>(str) << t;
         return str;
-	}
+    }
 
 private:
     inline std::string cur_time() {
-		return boost::posix_time::to_simple_string(
-			boost::posix_time::microsec_clock::universal_time()
-			);
+        return boost::posix_time::to_simple_string(
+            boost::posix_time::microsec_clock::universal_time()
+            );
     }
         
 protected:
